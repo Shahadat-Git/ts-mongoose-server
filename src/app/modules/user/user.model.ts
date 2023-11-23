@@ -27,10 +27,11 @@ const address = new Schema<TAddress>({
 const userSchema = new Schema<TUser>({
     userId: {
         type: Number,
-        unique: true
+        unique: true,
     },
     username: {
         type: String,
+        required: [true, "Username Required! "],
     },
     password: {
         type: String,
