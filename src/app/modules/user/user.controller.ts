@@ -11,7 +11,21 @@ const createUser = async (req: Request, res: Response) => {
             "data": result,
         })
     } catch (error) {
-        console.log(error);
+        // console.log(error);
+        res.status(500).json(error)
+    }
+}
+
+const getUsers = async (req: Request, res: Response) => {
+    try {
+        const result = await UserServices.getAllUsersFromDB();
+        res.status(200).json({
+            "success": true,
+            "message": "User created successfully!",
+            "data": result,
+        })
+    } catch (error) {
+        // console.log(error);
         res.status(500).json(error)
     }
 }
@@ -19,4 +33,5 @@ const createUser = async (req: Request, res: Response) => {
 
 export const UserControllers = {
     createUser,
+    getUsers,
 }
