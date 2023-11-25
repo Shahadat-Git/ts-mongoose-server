@@ -11,8 +11,24 @@ app.use(cors());
 // application routes
 app.use('/api', UserRouter);
 
+// root route
 app.get('/', (req: Request, res: Response) => {
-  res.send('Server is running');
+  res.status(200).json({
+    "success": true,
+    "message": "Server is running!"
+  });
+});
+
+// error routes
+app.get('*', (req: Request, res: Response) => {
+  res.status(200).json({
+    "success": false,
+    "message": "Route not found",
+    "error": {
+      "code": 404,
+      "description": `${req.params["0"]} route not found`
+    }
+  });
 });
 
 export default app;

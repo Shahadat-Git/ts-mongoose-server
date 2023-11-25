@@ -77,9 +77,10 @@ const updateSingleUser = async (req: Request, res: Response) => {
   try {
     const userId: string = req.params.userId;
     const updatedData: TUser = req.body;
+    const validUser = await userValidationSchema.parse(updatedData);
     const result = await UserServices.updateSingleUsersToDB(
       userId,
-      updatedData,
+      validUser,
     );
     res.status(200).json({
       success: true,
